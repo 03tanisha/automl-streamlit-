@@ -98,7 +98,7 @@ if st.session_state.active_tab == "📊 Overview":
     with st.expander("File requirements"):
         st.markdown("""
         - File format: **CSV**
-        - Maximum file size: **200MB**
+        - Maximum file size: **100MB**
         - Supported Columns:
             - **Numerical** → (12, 3.5, 11)
             - **Categorical** → (cat, dog, true/false)

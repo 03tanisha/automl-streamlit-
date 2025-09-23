@@ -1,0 +1,4 @@
+[server]
+maxUploadSize = 100  # size in MB
+headless = true
+enableCORS = false
