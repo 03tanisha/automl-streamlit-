@@ -217,7 +217,7 @@ elif st.session_state.active_tab == "📋 Data Preview":
 
         # st.markdown('div class="summary-heading tab-separator">💹 Summary Stats</div>', unsafe_allow_html=True)
         st.markdown('<div class="shape tab-separator">💹 Summary Stats</div>', unsafe_allow_html=True)
-        st.dataframe(df.describe())
+        st.dataframe(df.describe().round(2))
 
         # st.markdown('div class="col-info tab-separator">📌 Column Information</div>', unsafe_allow_html=True)
         st.markdown('<div class="shape tab-separator">📌 Column Information</div>', unsafe_allow_html=True)
