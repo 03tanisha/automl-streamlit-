@@ -77,7 +77,6 @@ st.markdown('<div class="heading-tabsep"></div>', unsafe_allow_html=True)
 
 
 
-# # ------------------- Overview Tab -------------------
 # ------------------- Overview Tab -------------------
 if st.session_state.active_tab == "📊 Overview":
     st.markdown('<p class="intro-text-short">Turn your data into insights</p>', unsafe_allow_html=True)
@@ -121,27 +120,22 @@ if st.session_state.active_tab == "📊 Overview":
     if uploaded_file is not None:
         st.session_state.uploaded_file = uploaded_file
 
-        # Show progress bar while "processing"
+        # Show simple progress bar
         progress_text = st.empty()
         progress_bar = st.progress(0)
 
         for percent_complete in range(101):
-            progress_bar.markdown(f"""
-            <div class="progress-container">
-                <div class="progress-bar" style="width: {percent_complete}%;"></div>
-            </div>
-            """, unsafe_allow_html=True)
+            progress_text.text(f"Processing... {percent_complete}%")
+            progress_bar.progress(percent_complete)
+            time.sleep(0.01)  # optional small delay for animation
 
-            progress_text.markdown(f'<div class="progress-text">Processing... {percent_complete}%</div>', unsafe_allow_html=True)
-            time.sleep(0.01)
-
-        # Read CSV from uploaded file
         try:
             df = pd.read_csv(uploaded_file)
             st.session_state.df = df
             st.success("✅ File uploaded and cleaned successfully!")
         except Exception as e:
             st.error(f"❌ Error reading CSV file: {e}")
+
 
 # if st.session_state.active_tab == "📊 Overview":
 #     st.markdown('<p class="intro-text-short">Turn your data into insights</p>', unsafe_allow_html=True)
