@@ -48,7 +48,7 @@ if "trained_model" not in st.session_state:
 def load_css(file_path):
     with open(file_path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-load_css("automl/style.css")
+load_css("style.css")
 
 # ------------------- Heading -------------------
 st.markdown('<h1 class="center-heading">AutoML</h1>', unsafe_allow_html=True)
