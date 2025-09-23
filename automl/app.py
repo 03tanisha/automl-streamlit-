@@ -2,6 +2,7 @@ import streamlit as st
 import pandas as pd
 import time
 import numpy as np
+import os
 import plotly.express as px
 from sklearn.pipeline import Pipeline
 from models import (
@@ -45,10 +46,18 @@ if "trained_model" not in st.session_state:
 
 
 # ------------------- Load CSS -------------------
-def load_css(file_path):
-    with open(file_path) as f:
+def load_css(file_name):
+    # Get the absolute path relative to this script
+    base_dir = os.path.dirname(__file__)
+    css_path = os.path.join(base_dir, file_name)
+    with open(css_path) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 load_css("style.css")
+# def load_css(file_path):
+#     with open(file_path) as f:
+#         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# load_css("style.css")
 
 # ------------------- Heading -------------------
 st.markdown('<h1 class="center-heading">AutoML</h1>', unsafe_allow_html=True)
