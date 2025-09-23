@@ -77,6 +77,7 @@ st.markdown('<div class="heading-tabsep"></div>', unsafe_allow_html=True)
 
 
 
+# # ------------------- Overview Tab -------------------
 # ------------------- Overview Tab -------------------
 if st.session_state.active_tab == "📊 Overview":
     st.markdown('<p class="intro-text-short">Turn your data into insights</p>', unsafe_allow_html=True)
@@ -113,36 +114,100 @@ if st.session_state.active_tab == "📊 Overview":
         - [Credit Card Dataset](https://archive.ics.uci.edu/dataset/27/credit+approval)
         """)
 
-    # st.markdown('div class="upload-file tab-separator">📤 Upload Your Dataset")
     st.markdown('<div class="upload-file tab-separator">📤 Upload Your Dataset</div>', unsafe_allow_html=True)
     uploaded_file = st.file_uploader("Drag and drop your CSV file here or click to browse", type="csv")
     skip_cleaning = st.checkbox("My dataset is already cleaned (skip data cleaning)")
 
-    if uploaded_file:
+    if uploaded_file is not None:
         st.session_state.uploaded_file = uploaded_file
-        # st.markdown('<div class="custom-progress">', unsafe_allow_html=True)
+
+        # Show progress bar while "processing"
         progress_text = st.empty()
         progress_bar = st.progress(0)
-        # st.markdown('</div>', unsafe_allow_html=True)
-        # for percent_complete in range(100):
-        #     progress_text.text(f"Processing... {percent_complete + 1}%")
-        #     progress_bar.progress(percent_complete + 1)
-        #     time.sleep(0.01)
+
         for percent_complete in range(101):
-    # progress bar itself
             progress_bar.markdown(f"""
             <div class="progress-container">
                 <div class="progress-bar" style="width: {percent_complete}%;"></div>
             </div>
             """, unsafe_allow_html=True)
-            
-            # progress text
+
             progress_text.markdown(f'<div class="progress-text">Processing... {percent_complete}%</div>', unsafe_allow_html=True)
-            
             time.sleep(0.01)
 
-        st.session_state.df = pd.read_csv(uploaded_file)
-        st.markdown('<div class="file-upload">File uploaded and cleaned successfully', unsafe_allow_html=True)
+        # Read CSV from uploaded file
+        try:
+            df = pd.read_csv(uploaded_file)
+            st.session_state.df = df
+            st.success("✅ File uploaded and cleaned successfully!")
+        except Exception as e:
+            st.error(f"❌ Error reading CSV file: {e}")
+
+# if st.session_state.active_tab == "📊 Overview":
+#     st.markdown('<p class="intro-text-short">Turn your data into insights</p>', unsafe_allow_html=True)
+#     st.markdown('<p class="intro-text">Build ML models in minutes — upload, explore, and train effortlessly</p>', unsafe_allow_html=True)
+
+#     st.markdown('<h2 class="get-started tab-separator">Getting Started</h2>', unsafe_allow_html=True)
+
+#     st.markdown("""
+#     <div class="steps-box">
+#         <span>📂 Upload your CSV file</span>
+#         <span>👀 Preview your data</span>
+#         <span>📊 Generate Visualizations</span>
+#         <span>⚙️ Select algorithms and tune parameters</span>
+#         <span>🧪 Testing</span>
+#         <span>💡 Get insights</span>
+#     </div>
+#     """, unsafe_allow_html=True)
+
+#     with st.expander("File requirements"):
+#         st.markdown("""
+#         - File format: **CSV**
+#         - Maximum file size: **200MB**
+#         - Supported Columns:
+#             - **Numerical** → (12, 3.5, 11)
+#             - **Categorical** → (cat, dog, true/false)
+#             - **Temporal** → (2024-08-28)
+#         """)
+
+#     with st.expander("Example datasets"):
+#         st.markdown("""
+#         Try these example datasets:
+#         - [Iris Dataset](https://archive.ics.uci.edu/dataset/53/iris)
+#         - [Heart Disease Dataset](https://archive.ics.uci.edu/dataset/45/heart+disease)
+#         - [Credit Card Dataset](https://archive.ics.uci.edu/dataset/27/credit+approval)
+#         """)
+
+#     # st.markdown('div class="upload-file tab-separator">📤 Upload Your Dataset")
+#     st.markdown('<div class="upload-file tab-separator">📤 Upload Your Dataset</div>', unsafe_allow_html=True)
+#     uploaded_file = st.file_uploader("Drag and drop your CSV file here or click to browse", type="csv")
+#     skip_cleaning = st.checkbox("My dataset is already cleaned (skip data cleaning)")
+
+#     if uploaded_file:
+#         st.session_state.uploaded_file = uploaded_file
+#         # st.markdown('<div class="custom-progress">', unsafe_allow_html=True)
+#         progress_text = st.empty()
+#         progress_bar = st.progress(0)
+#         # st.markdown('</div>', unsafe_allow_html=True)
+#         # for percent_complete in range(100):
+#         #     progress_text.text(f"Processing... {percent_complete + 1}%")
+#         #     progress_bar.progress(percent_complete + 1)
+#         #     time.sleep(0.01)
+#         for percent_complete in range(101):
+#     # progress bar itself
+#             progress_bar.markdown(f"""
+#             <div class="progress-container">
+#                 <div class="progress-bar" style="width: {percent_complete}%;"></div>
+#             </div>
+#             """, unsafe_allow_html=True)
+            
+#             # progress text
+#             progress_text.markdown(f'<div class="progress-text">Processing... {percent_complete}%</div>', unsafe_allow_html=True)
+            
+#             time.sleep(0.01)
+
+#         st.session_state.df = pd.read_csv(uploaded_file)
+#         st.markdown('<div class="file-upload">File uploaded and cleaned successfully', unsafe_allow_html=True)
 
 
 # ------------------- Data Preview Tab -------------------
