@@ -4,7 +4,7 @@ import time
 import numpy as np
 import plotly.express as px
 from sklearn.pipeline import Pipeline
-from automl.utils.models import (
+from models import (
     linear_regression_train,
     logistic_regression_train,
     lasso_train,

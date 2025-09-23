@@ -9,7 +9,7 @@ from sklearn.linear_model import LinearRegression, Lasso, Ridge, LogisticRegress
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from xgboost import XGBClassifier
-from .utils import prob_detec  # function to detect regression/classification
+from utils import prob_detec  # function to detect regression/classification
 
 # Generic preprocessing for any dataset
 def preprocess_data(df, target_col):
