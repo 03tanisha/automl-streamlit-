@@ -1,3 +1,4 @@
+# AUTOML
 An interactive AutoML pipeline built with Streamlit, designed to simplify the machine learning workflow.
 This web application allows users to upload datasets, automatically preprocess data, train multiple models, compare their performance, and visualize results — all without writing a single line of code.
 
